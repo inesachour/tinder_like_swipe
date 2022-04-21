@@ -18,11 +18,6 @@ function App() {
   return (
     <div className="App">
         {
-         /* photos.map((obj)=>{
-            if(obj.id<100){
-              return <PhotoCard objet={obj}/>
-            } 
-          })*/
           <PhotoCard objets={photos}></PhotoCard>
         }  
         
