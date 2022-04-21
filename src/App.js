@@ -1,23 +1,31 @@
-import logo from './logo.svg';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import './App.css';
+import PhotoCard from './components/PhotoCard';
 
 function App() {
+  const [photos, setPohotos] = useState([]);
+  useEffect(()=>{
+    axios.get("https://jsonplaceholder.typicode.com/photos")
+    .then(response => {
+      setPohotos(response.data)
+    })
+    .catch(e =>{
+      console.log(e);
+    })
+  },[])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        {
+         /* photos.map((obj)=>{
+            if(obj.id<100){
+              return <PhotoCard objet={obj}/>
+            } 
+          })*/
+          <PhotoCard objets={photos}></PhotoCard>
+        }  
+        
     </div>
   );
 }
